@@ -1,23 +1,52 @@
 import React from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
+import {
+    View,
+    StyleSheet,
+    Text,
+    Image,
+    ImageSourcePropType,
+    ViewStyle,
+    FlexStyle,
+    ImageStyle,
+    TextStyle
+} from "react-native";
 
-const Card: React.FC<any> = (props) => {
-    const { Name, Source, Designation } = props;
+type CardProps = {
+    Name: string;
+    Source: ImageSourcePropType;
+    Designation: string;
+    Time?: string;
+};
+
+const Card: React.FC<CardProps> = (props) => {
+    const { Name, Source, Designation, Time } = props;
 
     return (
         <View style={styles.card}>
             <View style={styles.imageContainer}>
-                <Image style={styles.img} source={Source} />
+                <Image style={styles.img} source={Source} resizeMode="contain" />
             </View>
             <View style={styles.detailsContainer}>
                 <Text style={styles.name}>{Name}</Text>
                 <Text style={styles.designation}>{Designation}</Text>
+                {!!Time && <Text style={styles.time}>{Time}</Text>}
             </View>
         </View>
     );
 };
 
-const styles = StyleSheet.create({
+type CardStyles = {
+    mb20: ViewStyle;
+    card: FlexStyle;
+    imageContainer: ViewStyle;
+    img: ImageStyle;
+    detailsContainer: ViewStyle;
+    name: TextStyle;
+    designation: TextStyle;
+    time: TextStyle;
+};
+
+const styles = StyleSheet.create<CardStyles>({
     mb20: {
         marginBottom: 20
     },
@@ -52,16 +81,7 @@ const styles = StyleSheet.create({
     designation: {
         color: "gray"
     },
-    timing: {
-        marginTop: 8,
-        flexDirection: "row",
-        alignItems: "center"
-    },
     time: {
-        marginLeft: 5,
-        fontSize: 11
-    },
-    fees: {
         color: "gray"
     }
 });
