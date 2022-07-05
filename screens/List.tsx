@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, FlexStyle, TextStyle } from "react-native";
+import { View, StyleSheet, FlexStyle, TextStyle, TouchableOpacity } from "react-native";
 
 import Card from "../components/Card";
 
@@ -8,10 +8,14 @@ type ListStyles = {
     text: TextStyle;
 };
 
-const List: React.FC = () => {
+const List: React.FC<any> = (props) => {
+    const { navigation } = props;
+
     return (
         <View style={styles.container}>
-            <Card Name="Peter" Designation="Doctor" Source={require("../assets/mock.jpg")} />
+            <TouchableOpacity onPress={() => navigation.navigate("Details")}>
+                <Card Name="Peter" Designation="Doctor" Source={require("../assets/mock.jpg")} />
+            </TouchableOpacity>
         </View>
     );
 };
