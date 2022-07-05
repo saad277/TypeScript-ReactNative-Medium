@@ -4,6 +4,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import List from "../screens/List";
 import Details from "../screens/Details";
 
+export type MainStackParams = {
+    List: undefined;
+    Details: { Id: string | number };
+};
+
 const Stack = createNativeStackNavigator();
 
 const MainStack: React.FC = () => {

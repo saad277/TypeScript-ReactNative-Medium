@@ -1,7 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet, FlexStyle, TextStyle } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RouteProp } from "@react-navigation/native";
 
-const Details: React.FC = () => {
+import { MainStackParams } from "../navigation/MainStack";
+
+type DetailProps = {
+    navigation: NativeStackNavigationProp<MainStackParams>;
+    route: RouteProp<MainStackParams, "Details">;
+};
+
+const Details: React.FC<DetailProps> = (props) => {
+    const { route } = props;
+
+    const { Id } = route.params;
+
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Details Screen</Text>
